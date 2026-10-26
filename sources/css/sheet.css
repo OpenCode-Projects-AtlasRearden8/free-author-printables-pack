@@ -1,0 +1,241 @@
+/* Shared print stylesheet for all printable sheets.
+   US Letter, 0.5in margins, ink-friendly black + one accent. */
+
+@page {
+  size: Letter;
+  margin: 0.5in;
+}
+
+:root {
+  --ink: #1a1a1a;
+  --accent: #2f6f5e;
+  --accent-light: #e8f2ee;
+  --rule: #9aa5a1;
+  --faint: #eef1ef;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  font-family: "DejaVu Sans", "Helvetica", sans-serif;
+  color: var(--ink);
+  font-size: 10.5pt;
+  line-height: 1.45;
+  margin: 0;
+}
+
+h1 {
+  font-size: 20pt;
+  margin: 0 0 2px 0;
+  color: var(--accent);
+}
+
+h2 {
+  font-size: 12.5pt;
+  margin: 14px 0 6px 0;
+  border-bottom: 1.5pt solid var(--accent);
+  padding-bottom: 2px;
+}
+
+.subtitle { margin: 0 0 4px 0; color: #555; font-size: 10pt; }
+
+.sheet-header {
+  border-bottom: 2.5pt solid var(--accent);
+  padding-bottom: 6px;
+  margin-bottom: 10px;
+}
+
+.sheet-footer {
+  margin-top: 14px;
+  border-top: 0.75pt solid var(--rule);
+  padding-top: 4px;
+  font-size: 8pt;
+  color: #666;
+}
+
+/* Fill-in lines */
+.write-line {
+  border-bottom: 0.75pt solid var(--ink);
+  height: 20px;
+}
+
+.write-line.roll { border-color: var(--rule); }
+
+/* Grid rows: label + line */
+.row {
+  display: flex;
+  gap: 10px;
+  align-items: flex-end;
+  margin-bottom: 2px;
+}
+.row .label { white-space: nowrap; font-size: 9.5pt; color: #444; }
+.row .line { flex: 1; }
+
+/* Checkbox lists */
+ul.checklist { list-style: none; margin: 0; padding: 0; }
+ul.checklist li {
+  padding: 5px 0 5px 26px;
+  position: relative;
+  border-bottom: 0.5pt dotted var(--rule);
+}
+ul.checklist li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 7px;
+  width: 12px;
+  height: 12px;
+  border: 1.25pt solid var(--ink);
+  border-radius: 2px;
+}
+ul.checklist li small { color: #666; }
+
+/* Calendar */
+table.cal {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+table.cal th {
+  background: var(--accent-light);
+  border: 0.75pt solid var(--accent);
+  padding: 5px 4px;
+  font-size: 9.5pt;
+}
+table.cal td {
+  border: 0.75pt solid var(--rule);
+  height: 108px;
+  vertical-align: top;
+  padding: 4px 5px;
+  font-size: 8.5pt;
+}
+td.daynum { font-weight: bold; color: var(--accent); }
+td .hint { color: #777; }
+
+/* Boxes / cards on a sheet */
+.two-col { display: flex; gap: 12px; }
+.two-col > div { flex: 1; }
+
+.field-box {
+  border: 0.75pt solid var(--rule);
+  background: var(--faint);
+  padding: 8px;
+  margin-bottom: 8px;
+}
+.field-box .label { font-size: 9pt; color: #444; margin-bottom: 2px; }
+
+table.lines { width: 100%; border-collapse: collapse; }
+table.lines td { padding: 0 4px 18px 4px; border-bottom: none; vertical-align: bottom; }
+table.lines td.ctr { border-bottom: 0.75pt solid var(--ink); }
+
+/* Log tables */
+table.log { width: 100%; border-collapse: collapse; table-layout: fixed; }
+table.log th {
+  background: var(--accent-light);
+  border: 0.75pt solid var(--accent);
+  padding: 5px 4px;
+  font-size: 8.5pt;
+  text-align: left;
+}
+table.log td { border: 0.75pt solid var(--rule); height: 30px; padding: 4px; font-size: 9pt; }
+table.log td.ctr { text-align: center; }
+
+/* Printable templates (bookmark / card / postcard) */
+.template-frame { border: 1pt dashed var(--accent); padding: 10px; margin-bottom: 8px; }
+.cut-here {
+  border-top: 1.5pt dashed var(--accent);
+  color: var(--accent);
+  font-size: 8pt;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.bookmark {
+  width: 5.4in;
+  height: 6.4in;
+  border: 1pt solid var(--ink);
+  margin: 0 auto;
+  text-align: center;
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.bookmark .top-rule { border-top: 1.5pt solid var(--accent); margin-bottom: 6px; }
+.bookmark .bm-title { font-size: 15pt; font-weight: bold; color: var(--accent); }
+.bookmark .bm-sub { color: #555; font-size: 9.5pt; }
+.bookmark .bm-quote { font-style: italic; font-size: 10pt; }
+.bookmark .write-box {
+  border: 0.75pt solid var(--rule);
+  background: var(--faint);
+  padding: 6px;
+  font-size: 9pt;
+  color: #444;
+}
+
+.thankyou {
+  width: 6.6in;
+  height: 3.6in;
+  border: 1pt solid var(--ink);
+  margin: 0 auto 6px auto;
+  padding: 16px 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.thankyou .greet { font-size: 14pt; color: var(--accent); font-weight: bold; }
+.thankyou .msg { font-size: 10pt; }
+.thankyou .signoff { text-align: right; font-size: 10pt; }
+
+.postcard {
+  width: 6.6in;
+  height: 4.6in;
+  border: 1pt solid var(--ink);
+  margin: 0 auto 8px auto;
+  display: flex;
+}
+.postcard .left {
+  flex: 1.1;
+  padding: 14px;
+  border-right: 1pt dashed var(--ink);
+  font-size: 9.5pt;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.postcard .right {
+  flex: 1;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 9pt;
+  color: #555;
+}
+.postcard .addr {
+  border-bottom: 0.75pt solid var(--ink);
+  height: 24px;
+  margin-bottom: 10px;
+}
+.postcard .stamp {
+  border: 1.25pt dashed var(--ink);
+  width: 56px;
+  height: 66px;
+  align-self: flex-end;
+  font-size: 7pt;
+  text-align: center;
+  padding-top: 22px;
+  color: #777;
+}
+
+/* One-pager */
+.bible-grid {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+.bible-grid > div { flex: 1; }
+
+@media print {
+  .page-break { page-break-before: always; }
+}
